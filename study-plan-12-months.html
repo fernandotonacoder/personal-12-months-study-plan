@@ -1,497 +1,540 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plano de Estudos — 12 Meses</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Plano de Estudos — 12 Meses</title>
+  </head>
+  <body>
+    <div id="content">
+      <header>
+        <h1>Plano de estudos — 12 meses</h1>
+        <p>
+          Fernando Tona · Mai 2026 – Mai 2027 · .NET / Azure / Vue / Messaging /
+          Docker
+        </p>
+        <p style="font-size: 16px; font-style: italic; text-align: end">
+          NOTA: Este plano não inclui estudos da Licenciatura em Engenharia
+          Informática, <br />
+          nem pequenas aprendizagens pontuais como visualização de vídeos do
+          YouTube, <br />
+          leitura de artigos ou projetos paralelos de treino, de negócio real
+          freelance <br />
+          ou de portfolio para o GitHub.
+        </p>
+      </header>
 
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --border: #1e1e2e;
-    --accent: #00d4ff;
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --mono: 'IBM Plex Mono', monospace;
-    --sans: 'IBM Plex Sans', sans-serif;
-  }
+      <div class="approach-box">
+        <strong>Abordagem:</strong> não-oficial primeiro → oficial como
+        consolidação.<br />
+        <strong>Plataformas:</strong>
+        Pluralsight
+        <span style="color: #475569">(licença empresa, 1ª passagem)</span> ·
+        Dometrain
+        <span style="color: #475569"
+          >(cursos pagos com desconto + grátis, 1ª/2ª passagem)</span
+        >
+        · Microsoft Learn
+        <span style="color: #475569">(gratuito, 2ª passagem)</span> ·
+        certificates.dev
+        <span style="color: #475569">(exames oficiais Vue)</span>
+      </div>
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 13px;
-    line-height: 1.5;
-    padding: 40px 24px;
-    min-height: 100vh;
-  }
-
-  header {
-    margin-bottom: 16px;
-    border-left: 3px solid var(--accent);
-    padding-left: 16px;
-  }
-
-  header h1 {
-    font-family: var(--mono);
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: -0.5px;
-  }
-
-  header p {
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 11px;
-    margin-top: 4px;
-  }
-
-  .approach-box {
-    margin: 20px 0 28px 0;
-    padding: 10px 14px;
-    border: 1px solid #1e1e2e;
-    border-left: 3px solid #7c3aed;
-    background: #0d0d16;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .approach-box strong { color: #a78bfa; font-weight: 600; }
-
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-
-  table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11px; }
-  thead tr { border-bottom: 1px solid var(--border); }
-
-  th {
-    text-align: left;
-    padding: 8px 10px;
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 9.5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  }
-
-  th:nth-child(1) { width: 78px; }
-  th:nth-child(2) { width: 20%; }
-  th:nth-child(3) { width: 25%; }
-  th:nth-child(4) { width: 23%; }
-  th:nth-child(5) { }
-
-  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-  tbody tr:hover { background: var(--surface); }
-
-  td { padding: 10px 10px; vertical-align: top; }
-
-  td:first-child { color: var(--muted); white-space: nowrap; font-size: 10px; }
-
-  .month-label { font-weight: 600; color: var(--text); font-size: 11px; display: block; }
-
-  .pills { display: flex; flex-wrap: wrap; gap: 4px; }
-
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 7px;
-    border-radius: 3px;
-    font-size: 10px;
-    border: 1px solid transparent;
-    white-space: nowrap;
-  }
-
-  .pill-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-
-  .az     { border-color: #00d4ff33; color: #00d4ff; }
-  .az     .pill-dot { background: #00d4ff; }
-  .net    { border-color: #7c3aed33; color: #a78bfa; }
-  .net    .pill-dot { background: #7c3aed; }
-  .msg    { border-color: #10b98133; color: #10b981; }
-  .msg    .pill-dot { background: #10b981; }
-  .vue    { border-color: #f59e0b33; color: #f59e0b; }
-  .vue    .pill-dot { background: #f59e0b; }
-  .docker { border-color: #f43f5e33; color: #f43f5e; }
-  .docker .pill-dot { background: #f43f5e; }
-
-  .res-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 5px;
-    color: #94a3b8;
-    font-size: 10px;
-    line-height: 1.6;
-  }
-  .res-icon { flex-shrink: 0; }
-  .res-platform {
-    font-size: 9px;
-    color: #475569;
-    margin-left: 2px;
-  }
-
-  .cert-badge {
-    display: flex;
-    align-items: flex-start;
-    gap: 5px;
-    margin-bottom: 5px;
-    padding: 4px 7px;
-    border-radius: 3px;
-    font-size: 10px;
-    line-height: 1.5;
-  }
-  .cert-badge.pending { border: 1px dashed #f59e0b55; color: #f59e0b; background: #f59e0b08; }
-  .cert-badge.done    { border: 1px solid #10b98155; color: #10b981; background: #10b98108; }
-  .cert-badge.none    { color: #334155; font-size: 9.5px; padding: 0; }
-
-  .cert-sub { font-size: 9px; opacity: 0.65; display: block; margin-top: 1px; }
-
-  .notes-col { color: var(--muted); font-size: 10px; line-height: 1.6; }
-
-  .milestone {
-    display: inline-block;
-    background: #f59e0b18;
-    border: 1px solid #f59e0b44;
-    color: #f59e0b;
-    font-size: 9px;
-    padding: 1px 5px;
-    border-radius: 2px;
-    margin-top: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .sep-row td {
-    padding: 4px 10px;
-    background: #0d0d16;
-    color: #475569;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-top: 1px solid var(--border);
-  }
-
-  footer {
-    margin-top: 40px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 10px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <h1>study_plan_12m.md</h1>
-  <p>Fernando Tona · Mai 2026 – Mai 2027 · .NET / Azure / Vue / Messaging / Docker</p>
-</header>
-
-<div class="approach-box">
-  <strong>Abordagem:</strong> não-oficial primeiro → oficial como consolidação.<br>
-  <strong>Plataformas:</strong>
-  Pluralsight <span style="color:#475569">(licença empresa, 1ª passagem)</span> ·
-  Dometrain <span style="color:#475569">(cursos pagos com desconto + grátis, 1ª/2ª passagem)</span> ·
-  Microsoft Learn <span style="color:#475569">(gratuito, 2ª passagem)</span> ·
-  certificates.dev <span style="color:#475569">(exames oficiais Vue)</span>
-</div>
-
-<div class="legend">
-  <div class="legend-item"><div class="dot" style="background:#00d4ff"></div> AZ-204 / Azure</div>
-  <div class="legend-item"><div class="dot" style="background:#7c3aed"></div> .NET / C#</div>
-  <div class="legend-item"><div class="dot" style="background:#10b981"></div> Messaging</div>
-  <div class="legend-item"><div class="dot" style="background:#f59e0b"></div> Vue.js</div>
-  <div class="legend-item"><div class="dot" style="background:#f43f5e"></div> Docker</div>
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Mês</th>
-      <th>Foco</th>
-      <th>Recursos (não-oficial)</th>
-      <th>Oficial / Certificação</th>
-      <th>Notas</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr class="sep-row"><td colspan="5">Q2 2026 — AZ-204</td></tr>
-
-    <tr>
-      <td><span class="month-label">Mai 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill az"><span class="pill-dot"></span>AZ-204 sprint final</span>
-          <span class="pill vue"><span class="pill-dot"></span>Vue arranque</span>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="dot" style="background: #00d4ff"></div>
+          AZ-204 / Azure
         </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight AZ-204 Path <span class="res-platform">(conclusão)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Labs práticos</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Music Albums API <span class="res-platform">(portfólio)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Vue Path <span class="res-platform">(início leve)</span></span></div>
-      </td>
-      <td>
-        <div class="cert-badge pending">🎯 Exame AZ-204 — 21 Jun<br><span class="cert-sub">Microsoft Learn AZ-204 como 2ª passagem</span></div>
-      </td>
-      <td class="notes-col">
-        AZ-204 é a prioridade absoluta.<br>
-        Vue só 1–2h/semana.
-        <div><span class="milestone">⚡ Exame 21 Jun</span></div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><span class="month-label">Jun 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill az"><span class="pill-dot"></span>AZ-204 exame</span>
-          <span class="pill net"><span class="pill-dot"></span>.NET arranque</span>
+        <div class="legend-item">
+          <div class="dot" style="background: #7c3aed"></div>
+          .NET / C#
         </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>48-day .NET Syllabus <span class="res-platform">(retomar)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight .NET Path</span></div>
-      </td>
-      <td>
-        <div class="cert-badge done">✓ AZ-204 <span class="cert-sub">Microsoft — esperado</span></div>
-        <div class="cert-badge none">— sem novo exame</div>
-      </td>
-      <td class="notes-col">
-        Pós-exame: respirar e retomar<br>
-        o syllabus .NET diário.
-        <div><span class="milestone">🏆 AZ-204 done</span></div>
-      </td>
-    </tr>
-
-    <tr class="sep-row"><td colspan="5">Q3 2026 — .NET profundo + Messaging</td></tr>
-
-    <tr>
-      <td><span class="month-label">Jul 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill net"><span class="pill-dot"></span>.NET intermédio</span>
-          <span class="pill msg"><span class="pill-dot"></span>Messaging arranque</span>
-          <span class="pill vue"><span class="pill-dot"></span>Vue.js</span>
+        <div class="legend-item">
+          <div class="dot" style="background: #10b981"></div>
+          Messaging
         </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>48-day Syllabus Phase 2 <span class="res-platform">(LINQ, async/await, generics)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Messaging / Azure Service Bus</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Vue Path</span></div>
-      </td>
-      <td>
-        <div class="cert-badge none">— sem exame este mês</div>
-      </td>
-      <td class="notes-col">
-        Messaging: pub/sub, queues,<br>
-        conceitos base Event-Driven.
-      </td>
-    </tr>
-
-    <tr>
-      <td><span class="month-label">Ago 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill net"><span class="pill-dot"></span>.NET intermédio</span>
-          <span class="pill msg"><span class="pill-dot"></span>NServiceBus</span>
-          <span class="pill vue"><span class="pill-dot"></span>Vue.js</span>
+        <div class="legend-item">
+          <div class="dot" style="background: #f59e0b"></div>
+          Vue.js
         </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>48-day Syllabus Phase 2 <span class="res-platform">(conclusão)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>NServiceBus docs + samples oficiais</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Vue Path</span></div>
-      </td>
-      <td>
-        <div class="cert-badge pending">🎯 Dometrain — Messaging / EDA<br><span class="cert-sub">2ª passagem sobre NServiceBus + Azure Service Bus</span></div>
-      </td>
-      <td class="notes-col">
-        NServiceBus: sagas, handlers, transports.<br>
-        Ligar ao contexto real da empresa.<br>
-        Vue: Composition API, componentes.
-      </td>
-    </tr>
-
-    <tr>
-      <td><span class="month-label">Set 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill net"><span class="pill-dot"></span>.NET avançado</span>
-          <span class="pill msg"><span class="pill-dot"></span>Messaging consolidação</span>
-          <span class="pill docker"><span class="pill-dot"></span>Docker início</span>
+        <div class="legend-item">
+          <div class="dot" style="background: #f43f5e"></div>
+          Docker
         </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>48-day Syllabus Phase 3 <span class="res-platform">(início)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Docker for Software Dev</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight .NET Path</span></div>
-      </td>
-      <td>
-        <div class="cert-badge none">— sem exame este mês</div>
-      </td>
-      <td class="notes-col">
-        Phase 3: Clean Architecture, CQRS,<br>
-        Outbox pattern, design patterns.<br>
-        Docker: Dockerfiles, imagens, compose.
-      </td>
-    </tr>
+      </div>
 
-    <tr class="sep-row"><td colspan="5">Q4 2026 — Vue certificação + .NET sénior + Docker</td></tr>
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>Foco</th>
+            <th>Recursos (não-oficial)</th>
+            <th>Oficial / Certificação</th>
+            <th>Notas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sep-row">
+            <td colspan="5">Q2 2026 — AZ-204</td>
+          </tr>
 
-    <tr>
-      <td><span class="month-label">Out 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill net"><span class="pill-dot"></span>.NET avançado</span>
-          <span class="pill vue"><span class="pill-dot"></span>Vue consolidação</span>
-          <span class="pill docker"><span class="pill-dot"></span>Docker</span>
-        </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>48-day Syllabus Phase 3</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Vue Path <span class="res-platform">(conclusão)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Docker for Software Dev</span></div>
-      </td>
-      <td>
-        <div class="cert-badge pending">🎯 Dometrain — .NET/C# geral<br><span class="cert-sub">2ª passagem aprofundada sobre .NET</span></div>
-      </td>
-      <td class="notes-col">
-        Vue: Pinia, Vue Router, composables.<br>
-        Dometrain .NET como consolidação<br>
-        dos meses anteriores.
-      </td>
-    </tr>
+          <tr>
+            <td><span class="month-label">Mai 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill az"
+                  ><span class="pill-dot"></span>AZ-204 sprint final</span
+                >
+                <span class="pill vue"
+                  ><span class="pill-dot"></span>Vue arranque</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >Pluralsight AZ-204 Path
+                  <span class="res-platform">(conclusão)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Pluralsight Labs práticos</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >Music Albums API
+                  <span class="res-platform">(portfólio)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >Pluralsight Vue Path
+                  <span class="res-platform">(início leve)</span></span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge pending">
+                🎯 Exame AZ-204 — 21 Jun<br /><span class="cert-sub"
+                  >Microsoft Learn AZ-204 como 2ª passagem</span
+                >
+              </div>
+            </td>
+            <td class="notes-col">
+              AZ-204 é a prioridade absoluta.<br />
+              Vue só 1–2h/semana.
+              <div><span class="milestone">⚡ Exame 21 Jun</span></div>
+            </td>
+          </tr>
 
-    <tr>
-      <td><span class="month-label">Nov 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill vue"><span class="pill-dot"></span>Vue cert prep</span>
-          <span class="pill net"><span class="pill-dot"></span>.NET avançado</span>
-        </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>certificates.dev — study guide + exercícios</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Dometrain .NET <span class="res-platform">(continuação)</span></span></div>
-      </td>
-      <td>
-        <div class="cert-badge pending">🎯 Vue.js Mid-Level — certificates.dev<br><span class="cert-sub">exame oficial, coding challenges práticos</span></div>
-      </td>
-      <td class="notes-col">
-        Sprint focado no exame Vue.<br>
-        Foco em prática, não só teoria.
-        <div><span class="milestone">🎯 Vue exam Nov/Dez</span></div>
-      </td>
-    </tr>
+          <tr>
+            <td><span class="month-label">Jun 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill az"
+                  ><span class="pill-dot"></span>AZ-204 exame</span
+                >
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET arranque</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >48-day .NET Syllabus
+                  <span class="res-platform">(retomar)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Pluralsight .NET Path</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge done">
+                ✓ AZ-204 <span class="cert-sub">Microsoft — esperado</span>
+              </div>
+              <div class="cert-badge none">— sem novo exame</div>
+            </td>
+            <td class="notes-col">
+              Pós-exame: respirar e retomar<br />
+              o syllabus .NET diário.
+              <div><span class="milestone">🏆 AZ-204 done</span></div>
+            </td>
+          </tr>
 
-    <tr>
-      <td><span class="month-label">Dez 2026</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill vue"><span class="pill-dot"></span>Vue exame</span>
-          <span class="pill net"><span class="pill-dot"></span>.NET consolidação</span>
-        </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>48-day Syllabus Phase 3 <span class="res-platform">(conclusão)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Revisão geral do ano</span></div>
-      </td>
-      <td>
-        <div class="cert-badge done">✓ Vue.js Mid-Level <span class="cert-sub">certificates.dev — esperado</span></div>
-      </td>
-      <td class="notes-col">
-        Fechar o syllabus .NET de 48 dias.<br>
-        Balanço do ano — ajustar plano 2027.
-        <div><span class="milestone">🏆 Vue done</span></div>
-      </td>
-    </tr>
+          <tr class="sep-row">
+            <td colspan="5">Q3 2026 — .NET profundo + Messaging</td>
+          </tr>
 
-    <tr class="sep-row"><td colspan="5">Q1 2027 — Consolidação</td></tr>
+          <tr>
+            <td><span class="month-label">Jul 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET intermédio</span
+                >
+                <span class="pill msg"
+                  ><span class="pill-dot"></span>Messaging arranque</span
+                >
+                <span class="pill vue"
+                  ><span class="pill-dot"></span>Vue.js</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >48-day Syllabus Phase 2
+                  <span class="res-platform"
+                    >(LINQ, async/await, generics)</span
+                  ></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Pluralsight Messaging / Azure Service Bus</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span><span>Pluralsight Vue Path</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge none">— sem exame este mês</div>
+            </td>
+            <td class="notes-col">
+              Messaging: pub/sub, queues,<br />
+              conceitos base Event-Driven.
+            </td>
+          </tr>
 
-    <tr>
-      <td><span class="month-label">Jan 2027</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill net"><span class="pill-dot"></span>Dometrain .NET cert</span>
-          <span class="pill msg"><span class="pill-dot"></span>Messaging avançado</span>
-          <span class="pill docker"><span class="pill-dot"></span>Docker consolidação</span>
-        </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>NServiceBus sagas avançadas</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Pluralsight Docker Path</span></div>
-      </td>
-      <td>
-        <div class="cert-badge pending">🎯 Dometrain .NET/C# geral<br><span class="cert-sub">(se não concluído em Out/Nov)</span></div>
-      </td>
-      <td class="notes-col">
-        Messaging: sagas, outbox, idempotência.<br>
-        Escolher cert Dometrain com base<br>
-        no que for mais relevante no trabalho.
-      </td>
-    </tr>
+          <tr>
+            <td><span class="month-label">Ago 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET intermédio</span
+                >
+                <span class="pill msg"
+                  ><span class="pill-dot"></span>NServiceBus</span
+                >
+                <span class="pill vue"
+                  ><span class="pill-dot"></span>Vue.js</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >48-day Syllabus Phase 2
+                  <span class="res-platform">(conclusão)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>NServiceBus docs + samples oficiais</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span><span>Pluralsight Vue Path</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge pending">
+                🎯 Dometrain — Messaging / EDA<br /><span class="cert-sub"
+                  >2ª passagem sobre NServiceBus + Azure Service Bus</span
+                >
+              </div>
+            </td>
+            <td class="notes-col">
+              NServiceBus: sagas, handlers, transports.<br />
+              Ligar ao contexto real da empresa.<br />
+              Vue: Composition API, componentes.
+            </td>
+          </tr>
 
-    <tr>
-      <td><span class="month-label">Fev–Mai 2027</span></td>
-      <td>
-        <div class="pills">
-          <span class="pill net"><span class="pill-dot"></span>.NET manutenção</span>
-          <span class="pill docker"><span class="pill-dot"></span>Docker manutenção</span>
-          <span class="pill msg"><span class="pill-dot"></span>Messaging manutenção</span>
-        </div>
-      </td>
-      <td>
-        <div class="res-item"><span class="res-icon">▸</span><span>Projetos pessoais ativos</span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Leitura técnica <span class="res-platform">(blogs, docs, livros)</span></span></div>
-        <div class="res-item"><span class="res-icon">▸</span><span>Aplicar no trabalho diariamente</span></div>
-      </td>
-      <td>
-        <div class="cert-badge none">— consolidação sem cert planeada<br>avaliar plano para os próximos 12 meses</div>
-      </td>
-      <td class="notes-col">
-        Manter ritmo sem pressão de exame.<br>
-        Foco em aprofundar o que já se sabe<br>
-        e aplicar no contexto profissional.
-      </td>
-    </tr>
+          <tr>
+            <td><span class="month-label">Set 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET avançado</span
+                >
+                <span class="pill msg"
+                  ><span class="pill-dot"></span>Messaging consolidação</span
+                >
+                <span class="pill docker"
+                  ><span class="pill-dot"></span>Docker início</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >48-day Syllabus Phase 3
+                  <span class="res-platform">(início)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Pluralsight Docker for Software Dev</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Pluralsight .NET Path</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge none">— sem exame este mês</div>
+            </td>
+            <td class="notes-col">
+              Phase 3: Clean Architecture, CQRS,<br />
+              Outbox pattern, design patterns.<br />
+              Docker: Dockerfiles, imagens, compose.
+            </td>
+          </tr>
 
-  </tbody>
-</table>
+          <tr class="sep-row">
+            <td colspan="5">
+              Q4 2026 — Vue certificação + .NET sénior + Docker
+            </td>
+          </tr>
 
-<footer>
-  <span>Fernando Tona · study_plan_12m · Mai 2026</span>
-  <span>Plano vivo — ajustar conforme o trabalho e as prioridades</span>
-</footer>
+          <tr>
+            <td><span class="month-label">Out 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET avançado</span
+                >
+                <span class="pill vue"
+                  ><span class="pill-dot"></span>Vue consolidação</span
+                >
+                <span class="pill docker"
+                  ><span class="pill-dot"></span>Docker</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>48-day Syllabus Phase 3</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >Pluralsight Vue Path
+                  <span class="res-platform">(conclusão)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Pluralsight Docker for Software Dev</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge pending">
+                🎯 Dometrain — .NET/C# geral<br /><span class="cert-sub"
+                  >2ª passagem aprofundada sobre .NET</span
+                >
+              </div>
+            </td>
+            <td class="notes-col">
+              Vue: Pinia, Vue Router, composables.<br />
+              Dometrain .NET como consolidação<br />
+              dos meses anteriores.
+            </td>
+          </tr>
 
-</body>
+          <tr>
+            <td><span class="month-label">Nov 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill vue"
+                  ><span class="pill-dot"></span>Vue cert prep</span
+                >
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET avançado</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>certificates.dev — study guide + exercícios</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >Dometrain .NET
+                  <span class="res-platform">(continuação)</span></span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge pending">
+                🎯 Vue.js Mid-Level — certificates.dev<br /><span
+                  class="cert-sub"
+                  >exame oficial, coding challenges práticos</span
+                >
+              </div>
+            </td>
+            <td class="notes-col">
+              Sprint focado no exame Vue.<br />
+              Foco em prática, não só teoria.
+              <div><span class="milestone">🎯 Vue exam Nov/Dez</span></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="month-label">Dez 2026</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill vue"
+                  ><span class="pill-dot"></span>Vue exame</span
+                >
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET consolidação</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >48-day Syllabus Phase 3
+                  <span class="res-platform">(conclusão)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span><span>Revisão geral do ano</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge done">
+                ✓ Vue.js Mid-Level
+                <span class="cert-sub">certificates.dev — esperado</span>
+              </div>
+            </td>
+            <td class="notes-col">
+              Fechar o syllabus .NET de 48 dias.<br />
+              Balanço do ano — ajustar plano 2027.
+              <div><span class="milestone">🏆 Vue done</span></div>
+            </td>
+          </tr>
+
+          <tr class="sep-row">
+            <td colspan="5">Q1 2027 — Consolidação</td>
+          </tr>
+
+          <tr>
+            <td><span class="month-label">Jan 2027</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill net"
+                  ><span class="pill-dot"></span>Dometrain .NET cert</span
+                >
+                <span class="pill msg"
+                  ><span class="pill-dot"></span>Messaging avançado</span
+                >
+                <span class="pill docker"
+                  ><span class="pill-dot"></span>Docker consolidação</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>NServiceBus sagas avançadas</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Pluralsight Docker Path</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge pending">
+                🎯 Dometrain .NET/C# geral<br /><span class="cert-sub"
+                  >(se não concluído em Out/Nov)</span
+                >
+              </div>
+            </td>
+            <td class="notes-col">
+              Messaging: sagas, outbox, idempotência.<br />
+              Escolher cert Dometrain com base<br />
+              no que for mais relevante no trabalho.
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="month-label">Fev–Mai 2027</span></td>
+            <td>
+              <div class="pills">
+                <span class="pill net"
+                  ><span class="pill-dot"></span>.NET manutenção</span
+                >
+                <span class="pill docker"
+                  ><span class="pill-dot"></span>Docker manutenção</span
+                >
+                <span class="pill msg"
+                  ><span class="pill-dot"></span>Messaging manutenção</span
+                >
+              </div>
+            </td>
+            <td>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Projetos pessoais ativos</span>
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span
+                  >Leitura técnica
+                  <span class="res-platform">(blogs, docs, livros)</span></span
+                >
+              </div>
+              <div class="res-item">
+                <span class="res-icon">▸</span
+                ><span>Aplicar no trabalho diariamente</span>
+              </div>
+            </td>
+            <td>
+              <div class="cert-badge none">
+                — consolidação sem cert planeada<br />avaliar plano para os
+                próximos 12 meses
+              </div>
+            </td>
+            <td class="notes-col">
+              Manter ritmo sem pressão de exame.<br />
+              Foco em aprofundar o que já se sabe<br />
+              e aplicar no contexto profissional.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <footer>
+        <span>Fernando Tona · Plano de estudos a 12 meses · Mai 2026</span>
+        <span>Plano vivo — ajustar conforme o trabalho e as prioridades</span>
+      </footer>
+    </div>
+
+    <div id="zoom-controls">
+      <button id="zoom-out" title="Zoom out (Ctrl+scroll)">−</button>
+      <span id="zoom-label">100%</span>
+      <button id="zoom-in" title="Zoom in (Ctrl+scroll)">+</button>
+      <button id="zoom-reset" title="Reset zoom">⊙</button>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
 </html>
