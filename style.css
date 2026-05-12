@@ -48,6 +48,12 @@ header p {
   margin-top: 4px;
 }
 
+.header-note {
+  font-size: 16px;
+  font-style: italic;
+  text-align: end;
+}
+
 .approach-box {
   margin: 20px 0 28px 0;
   padding: 10px 14px;
@@ -57,12 +63,16 @@ header p {
   font-family: var(--mono);
   font-size: 20px;
   color: var(--muted);
-  line-height: 2.0;
+  line-height: 2;
 }
 
 .approach-box strong {
   color: #a78bfa;
   font-weight: 600;
+}
+
+.approach-note {
+  color: #475569;
 }
 
 .legend {
@@ -179,35 +189,40 @@ td:first-child {
   border-color: #00d4ff33;
   color: #00d4ff;
 }
-.az .pill-dot {
+.az .pill-dot,
+.az .dot {
   background: #00d4ff;
 }
 .net {
   border-color: #7c3aed33;
   color: #a78bfa;
 }
-.net .pill-dot {
+.net .pill-dot,
+.net .dot {
   background: #7c3aed;
 }
 .msg {
   border-color: #10b98133;
   color: #10b981;
 }
-.msg .pill-dot {
+.msg .pill-dot,
+.msg .dot {
   background: #10b981;
 }
 .vue {
   border-color: #f59e0b33;
   color: #f59e0b;
 }
-.vue .pill-dot {
+.vue .pill-dot,
+.vue .dot {
   background: #f59e0b;
 }
 .docker {
   border-color: #f43f5e33;
   color: #f43f5e;
 }
-.docker .pill-dot {
+.docker .pill-dot,
+.docker .dot {
   background: #f43f5e;
 }
 
@@ -321,7 +336,9 @@ td:first-child {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 #zoom-controls button:hover {
